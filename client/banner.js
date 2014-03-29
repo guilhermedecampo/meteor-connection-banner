@@ -1,13 +1,12 @@
-
 Meteor.startup(function(){
-	Template.meteorConnectionBanner.events({
+	Template.connectionBanner.events({
 		'click #meteor-connection-try-reconnect': function(event, template){
 			event.preventDefault();
 			Meteor.reconnect();
 		}
 	});
 
-	Template.meteorConnectionBanner.helpers({
+	Template.connectionBanner.helpers({
 		'wasConnected': function(event, template){
 			return Session.equals('MeteorConnection-wasConnected', true);
 		},
@@ -22,9 +21,6 @@ Meteor.startup(function(){
 		}
 	});
 
-	Handlebars.registerHelper("connectionBanner", function() {
-		return new Handlebars.SafeString(Template.meteorConnectionBanner());
-	});
 
 	Session.setDefault('MeteorConnection-isConnected', true);
 	Session.setDefault('MeteorConnection-wasConnected', false);
